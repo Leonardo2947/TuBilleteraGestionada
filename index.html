@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PlataJoven - Controlador de Gastos</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>PlataJoven</h1>
+    <p>Controlá tus gastos de forma simple y visual</p>
+  </header>
+
+  <button class="download-btn" onclick="exportarExcel()" aria-label="Exportar datos en Excel">Exportar en Excel</button>
+
+  <div class="container" id="resumen">
+    <div class="form-section">
+      <h2>Configuración Inicial</h2>
+      <input type="text" id="username" placeholder="Tu nombre (opcional)">
+      <input type="number" id="initial-amount" placeholder="Monto inicial">
+      <button onclick="establecerMontoInicial()">Guardar Monto</button>
+
+      <input type="number" id="add-amount" placeholder="Agregar monto disponible">
+      <button onclick="añadirMonto()">Añadir Monto</button>
+
+      <p class="saldo">Saldo actual: $<span id="saldo">0</span></p>
+
+      <h2>Añadir Gasto</h2>
+      <form id="expense-form">
+        <input type="text" id="description" placeholder="Descripción" required>
+        <input type="number" id="amount" placeholder="Monto" required>
+        <input type="date" id="date" required>
+        <select id="category" required>
+          <option value="" disabled selected>Elegí una categoría</option>
+          <option value="Comida">Comida</option>
+          <option value="Transporte">Transporte</option>
+          <option value="Ocio">Ocio</option>
+          <option value="Educación">Educación</option>
+          <option value="Servicios">Servicios</option>
+          <option value="Salud">Salud</option>
+          <option value="Ropa">Ropa</option>
+          <option value="Otros">Otros</option>
+        </select>
+        <button type="submit" aria-label="Añadir gasto">Agregar</button>
+      </form>
+
+      <input type="text" id="filtro" placeholder="Buscar gastos..." onkeyup="filtrarGastos()">
+      <ul id="expenses-ul"></ul>
+    </div>
+
+    <div class="chart-section">
+      <h2>Distribución</h2>
+      <canvas id="pieChart"></canvas>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 PlataJoven | Todos los derechos reservados</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
