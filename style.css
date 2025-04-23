@@ -106,3 +106,11 @@ footer {
   font-size: 0.9rem;
   background: #eee;
 }
+main.contenido {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+  background: #fdfdfd;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
