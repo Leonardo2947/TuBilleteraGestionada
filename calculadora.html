@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora | PlataJoven</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .calculadora {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .calculadora input, .calculadora select, .calculadora button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 8px;
+    }
+    .resultado {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PlataJoven</h1>
+    <nav class="nav-derecha">
+      <div class="dropdown">
+        <button class="dropbtn">Más ▾</button>
+        <div class="dropdown-content">
+          <a href="consejos.html">Consejos de Ahorro</a>
+          <a href="calculadora.html">Calculadora</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="contenido">
+    <h2>Calculadora Básica</h2>
+    <div class="calculadora">
+      <input type="number" id="num1" placeholder="Primer número">
+      <input type="number" id="num2" placeholder="Segundo número">
+      <select id="operacion">
+        <option value="sumar">Sumar</option>
+        <option value="restar">Restar</option>
+        <option value="multiplicar">Multiplicar</option>
+        <option value="dividir">Dividir</option>
+      </select>
+      <button onclick="calcular()">Calcular</button>
+      <div class="resultado" id="resultado">Resultado: -</div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 PlataJoven | Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    function calcular() {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      const operacion = document.getElementById('operacion').value;
+      let resultado = '';
+
+      if (isNaN(num1) || isNaN(num2)) {
+        resultado = 'Por favor, ingresá dos números válidos.';
+      } else {
+        switch (operacion) {
+          case 'sumar':
+            resultado = num1 + num2;
+            break;
+          case 'restar':
+            resultado = num1 - num2;
+            break;
+          case 'multiplicar':
+            resultado = num1 * num2;
+            break;
+          case 'dividir':
+            resultado = num2 !== 0 ? (num1 / num2).toFixed(2) : 'No se puede dividir por cero';
+            break;
+        }
+      }
+
+      document.getElementById('resultado').innerText = 'Resultado: ' + resultado;
+    }
+  </script>
+</body>
+</html>
